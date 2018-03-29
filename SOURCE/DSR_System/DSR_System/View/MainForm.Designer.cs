@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSlideItem = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnMinimize = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnLogout = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnExit = new Bunifu.Framework.UI.BunifuImageButton();
@@ -51,7 +52,6 @@
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnSlideItem = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
@@ -88,6 +88,41 @@
             this.panel1.Size = new System.Drawing.Size(209, 595);
             this.panel1.TabIndex = 0;
             // 
+            // btnSlideItem
+            // 
+            this.btnSlideItem.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(28)))), ((int)(((byte)(37)))));
+            this.btnSlideItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(52)))));
+            this.btnSlideItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSlideItem.BorderRadius = 0;
+            this.btnSlideItem.ButtonText = "Items";
+            this.btnSlideItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSlideItem.DisabledColor = System.Drawing.Color.Gray;
+            this.btnSlideItem.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnSlideItem.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnSlideItem.Iconimage")));
+            this.btnSlideItem.Iconimage_right = null;
+            this.btnSlideItem.Iconimage_right_Selected = null;
+            this.btnSlideItem.Iconimage_Selected = null;
+            this.btnSlideItem.IconMarginLeft = 0;
+            this.btnSlideItem.IconMarginRight = 0;
+            this.btnSlideItem.IconRightVisible = false;
+            this.btnSlideItem.IconRightZoom = 0D;
+            this.btnSlideItem.IconVisible = false;
+            this.btnSlideItem.IconZoom = 90D;
+            this.btnSlideItem.IsTab = true;
+            this.btnSlideItem.Location = new System.Drawing.Point(22, 230);
+            this.btnSlideItem.Name = "btnSlideItem";
+            this.btnSlideItem.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(52)))));
+            this.btnSlideItem.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(52)))));
+            this.btnSlideItem.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(89)))), ((int)(((byte)(121)))));
+            this.btnSlideItem.selected = false;
+            this.btnSlideItem.Size = new System.Drawing.Size(152, 28);
+            this.btnSlideItem.TabIndex = 24;
+            this.btnSlideItem.Text = "Items";
+            this.btnSlideItem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSlideItem.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(119)))), ((int)(((byte)(128)))));
+            this.btnSlideItem.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSlideItem.Click += new System.EventHandler(this.btnSlideItem_Click);
+            // 
             // btnMinimize
             // 
             this.btnMinimize.BackColor = System.Drawing.Color.SeaGreen;
@@ -95,7 +130,7 @@
             this.btnMinimize.ImageActive = null;
             this.btnMinimize.Location = new System.Drawing.Point(135, 0);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(67, 22);
+            this.btnMinimize.Size = new System.Drawing.Size(67, 30);
             this.btnMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMinimize.TabIndex = 23;
             this.btnMinimize.TabStop = false;
@@ -109,7 +144,7 @@
             this.btnLogout.ImageActive = null;
             this.btnLogout.Location = new System.Drawing.Point(68, 0);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(67, 22);
+            this.btnLogout.Size = new System.Drawing.Size(67, 30);
             this.btnLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnLogout.TabIndex = 22;
             this.btnLogout.TabStop = false;
@@ -123,7 +158,7 @@
             this.btnExit.ImageActive = null;
             this.btnExit.Location = new System.Drawing.Point(0, 0);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(68, 22);
+            this.btnExit.Size = new System.Drawing.Size(68, 30);
             this.btnExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnExit.TabIndex = 21;
             this.btnExit.TabStop = false;
@@ -154,7 +189,7 @@
             this.bunifuCustomLabel6.AutoSize = true;
             this.bunifuCustomLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel6.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.bunifuCustomLabel6.Location = new System.Drawing.Point(49, 88);
+            this.bunifuCustomLabel6.Location = new System.Drawing.Point(49, 91);
             this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
             this.bunifuCustomLabel6.Size = new System.Drawing.Size(103, 17);
             this.bunifuCustomLabel6.TabIndex = 12;
@@ -435,7 +470,7 @@
             this.bunifuCustomLabel1.AutoSize = true;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(35, 37);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(35, 40);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(129, 55);
             this.bunifuCustomLabel1.TabIndex = 0;
@@ -457,41 +492,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(5, 590);
             this.panel3.TabIndex = 2;
-            // 
-            // btnSlideItem
-            // 
-            this.btnSlideItem.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(28)))), ((int)(((byte)(37)))));
-            this.btnSlideItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(52)))));
-            this.btnSlideItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSlideItem.BorderRadius = 0;
-            this.btnSlideItem.ButtonText = "Items";
-            this.btnSlideItem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSlideItem.DisabledColor = System.Drawing.Color.Gray;
-            this.btnSlideItem.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnSlideItem.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnSlideItem.Iconimage")));
-            this.btnSlideItem.Iconimage_right = null;
-            this.btnSlideItem.Iconimage_right_Selected = null;
-            this.btnSlideItem.Iconimage_Selected = null;
-            this.btnSlideItem.IconMarginLeft = 0;
-            this.btnSlideItem.IconMarginRight = 0;
-            this.btnSlideItem.IconRightVisible = false;
-            this.btnSlideItem.IconRightZoom = 0D;
-            this.btnSlideItem.IconVisible = false;
-            this.btnSlideItem.IconZoom = 90D;
-            this.btnSlideItem.IsTab = true;
-            this.btnSlideItem.Location = new System.Drawing.Point(22, 230);
-            this.btnSlideItem.Name = "btnSlideItem";
-            this.btnSlideItem.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(52)))));
-            this.btnSlideItem.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(52)))));
-            this.btnSlideItem.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(89)))), ((int)(((byte)(121)))));
-            this.btnSlideItem.selected = false;
-            this.btnSlideItem.Size = new System.Drawing.Size(152, 28);
-            this.btnSlideItem.TabIndex = 24;
-            this.btnSlideItem.Text = "Items";
-            this.btnSlideItem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnSlideItem.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(119)))), ((int)(((byte)(128)))));
-            this.btnSlideItem.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSlideItem.Click += new System.EventHandler(this.btnSlideItem_Click);
             // 
             // MainForm
             // 
