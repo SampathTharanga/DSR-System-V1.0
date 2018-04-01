@@ -13,19 +13,43 @@ namespace DSR_System
         static string conStr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
         SqlConnection con = new SqlConnection(conStr);
 
-        const string USERNAME = "Admin", PASSWORD = "Admin";
+        string USERNAME = "Admin", PASSWORD = "Admin";
 
         //USER REGISTRATION
-        public bool UserRegistration()
+        public void UserRegistration()
         {
-            bool check = false;
-            SqlCommand cmd1 = new SqlCommand(@"INSERT INTO User_Table VALUES UserName = '" + USERNAME + "', Password = '" + PASSWORD + "'", con);
+            string secQu = string.Empty, ans = string.Empty;
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO User_Table VALUES ( '" + USERNAME + "', '" + PASSWORD + "', '" + secQu + "', '" + ans + "')", con);
             con.Open();
             cmd1.ExecuteNonQuery();
             con.Close();
-            check = true;
-            return check;
         }
+
+        //CHECK EXIST USER
+        bool checkUser;
+        public bool CheckExistUser()
+        {
+            checkUser = false;
+            SqlCommand com = new SqlCommand("SELECT UserName FROM User_Table WHERE UserName = '" + USERNAME + "'", con);
+            con.Open();
+            SqlDataReader dr = com.ExecuteReader();
+            if (dr.Read() == true)
+                checkUser = true;
+            con.Close();
+            return checkUser;
+        }
+
+        //LOGIN CHECK
+        public SqlDataReader LoginUser(string _userName, string _password)
+        {
+            con.Close();
+            SqlCommand com = new SqlCommand("SELECT * FROM User_Table WHERE UserName='" + _userName + "' AND Password='" + _password + "'", con);
+            con.Open();
+            SqlDataReader dr = com.ExecuteReader();
+            return dr;
+        }
+
+
 
         //USER UPDATE
         public void UserUpdate(string _pass, string _secQu, string _ans)

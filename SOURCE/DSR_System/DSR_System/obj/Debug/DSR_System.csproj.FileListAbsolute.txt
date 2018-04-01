@@ -19,11 +19,9 @@ J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR_System\DSR_System
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR_System\DSR_System\obj\Debug\DSR_System.csprojResolveAssemblyReference.cache
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR_System\DSR_System\obj\Debug\DSR_System.csproj.CopyComplete
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR_System\DSR_System\obj\Debug\DSR_System.ucItems.resources
-J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\bin\Debug\DSR_System.exe.config
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\bin\Debug\DSR_System.exe
-J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\bin\Debug\DSR_System.pdb
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\bin\Debug\Bunifu_UI_v1.5.3.dll
-J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.csprojResolveAssemblyReference.cache
+J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\bin\Debug\DSR_System.exe.config
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.ucItems.resources
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.FrogetPassword.resources
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.LoginForm.resources
@@ -40,3 +38,5 @@ J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURC
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.csproj.CopyComplete
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.exe
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.pdb
+J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\bin\Debug\DSR_System.pdb
+J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.csprojResolveAssemblyReference.cache

@@ -70,6 +70,7 @@
             this.txtUseName.Name = "txtUseName";
             this.txtUseName.Size = new System.Drawing.Size(340, 29);
             this.txtUseName.TabIndex = 9;
+            this.txtUseName.Text = "Admin";
             this.txtUseName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // bunifuCustomLabel4
@@ -103,7 +104,7 @@
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.isPassword = false;
+            this.txtPassword.isPassword = true;
             this.txtPassword.Location = new System.Drawing.Point(23, 123);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
@@ -145,6 +146,7 @@
             this.btnSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSignIn.Textcolor = System.Drawing.Color.White;
             this.btnSignIn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // label1
             // 
