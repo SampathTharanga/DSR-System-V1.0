@@ -9,6 +9,8 @@ namespace DSR_System
         public FrogetPasswordForm()
         {
             InitializeComponent();
+
+            SetMaxLength(txtAnswer, 30);
         }
 
         // DATABASE CONNECTION
@@ -30,7 +32,10 @@ namespace DSR_System
                         Application.Restart();
                     }
                     else
+                    {
                         MessageBox.Show("Incorrect details!", "Recover Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ClearAll(this);
+                    }
                 }
                 else
                     MessageBox.Show("Please enter details!", "Recover Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -42,9 +47,53 @@ namespace DSR_System
             }
         }
 
+
+        //RESET ALL CONTROL
+        void ClearAll(Control con)
+        {
+            try
+            {
+                foreach (Control c in con.Controls)
+                {
+                    if (c is TextBox)
+                        ((TextBox)c).Clear();
+
+                    if (c is ComboBox)
+                        ((ComboBox)c).SelectedIndex = -1;
+                    else
+                        ClearAll(c);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Restart();
+        }
+
+        //TEXTBOX MAX LENGTH SET
+        private void SetMaxLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maxLength)
+        {
+            try
+            {
+                foreach (Control ctl in metroTextbox.Controls)
+                {
+                    if(ctl.GetType() == typeof(TextBox))
+                    {
+                        var txt = (TextBox)ctl;
+                        txt.MaxLength = maxLength;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

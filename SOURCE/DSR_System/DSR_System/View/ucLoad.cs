@@ -34,12 +34,35 @@ namespace DSR_System
         public ucLoad()
         {
             InitializeComponent();
+            SetMaxLength(txtRoute, 30);
+        }
+
+        //SET TEXTBOX MAXLENGHT
+        private void SetMaxLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maxLength)
+        {
+            try
+            {
+                foreach (Control ctl in metroTextbox.Controls)
+                {
+                    if(ctl.GetType() == typeof(TextBox))
+                    {
+                        var txt = (TextBox)ctl;
+                        txt.MaxLength = maxLength;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ucLoad_Load(object sender, EventArgs e)
         {
             try
             {
+                dtpDate.Value = DateTime.Today;
+
                 LoadDataDgv();
 
                 //DATABASE DATA LOAD TO THE DROPDOWN

@@ -19,6 +19,9 @@ namespace DSR_System
         public LoginForm()
         {
             InitializeComponent();
+
+            SetMaximumLength(txtUseName, 5);
+            SetMaximumLength(txtPassword, 10);
         }
 
         UserClass ObjUserCl = new UserClass();
@@ -58,9 +61,11 @@ namespace DSR_System
                         con.Close();
                         MessageBox.Show("Please enter correct details", "USER ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtPassword.Text = string.Empty;
-                        txtUseName.Text = string.Empty;
+                        txtUseName.Text = "Admin";
                     }
                 }
+                else
+                    MessageBox.Show("Please enter login details!", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -92,6 +97,26 @@ namespace DSR_System
         {
             FrogetPasswordForm frmForget = new FrogetPasswordForm();
             frmForget.ShowDialog();
+        }
+
+        //BUNIFU FRAMEWORK TEXTBOX MAXLENGTH SET
+        private void SetMaximumLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maximumLength)
+        {
+            try
+            {
+                foreach (Control ctl in metroTextbox.Controls)
+                {
+                    if (ctl.GetType() == typeof(TextBox))
+                    {
+                        var txt = (TextBox)ctl;
+                        txt.MaxLength = maximumLength;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
