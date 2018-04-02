@@ -38,18 +38,25 @@ namespace DSR_System
 
         private void ucLoad_Load(object sender, EventArgs e)
         {
-            LoadDataDgv();
-
-            //DATABASE DATA LOAD TO THE DROPDOWN
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM DSR_Table", con);
-            con.Open();
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            con.Close();
-            for (int i = 0; i < dt.Rows.Count; i++)
+            try
             {
-                //cbxDSRname.Items.Add(dt.Rows[i]["UserName"]);
-                cbxDSRname.AddItem(dt.Rows[i][0].ToString());
+                LoadDataDgv();
+
+                //DATABASE DATA LOAD TO THE DROPDOWN
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM DSR_Table", con);
+                con.Open();
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                con.Close();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    //cbxDSRname.Items.Add(dt.Rows[i]["UserName"]);
+                    cbxDSRname.AddItem(dt.Rows[i][0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -75,7 +82,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -142,15 +149,22 @@ namespace DSR_System
         //RESET ALL CONTROL
         void ClearAll(Control con)
         {
-            foreach (Control c in con.Controls)
+            try
             {
-                if (c is TextBox)
-                    ((TextBox)c).Clear();
+                foreach (Control c in con.Controls)
+                {
+                    if (c is TextBox)
+                        ((TextBox)c).Clear();
 
-                if (c is ComboBox)
-                    ((ComboBox)c).SelectedIndex = -1;
-                else
-                    ClearAll(c);
+                    if (c is ComboBox)
+                        ((ComboBox)c).SelectedIndex = -1;
+                    else
+                        ClearAll(c);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

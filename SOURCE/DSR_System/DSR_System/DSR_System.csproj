@@ -55,17 +55,18 @@
     <Compile Include="Control\UserClass.cs" />
     <Compile Include="Control\ItemClass.cs" />
     <Compile Include="Control\LoadUnloadClass.cs" />
+    <Compile Include="Control\DeliveryClass.cs" />
     <Compile Include="View\ucItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\ucItems.Designer.cs">
       <DependentUpon>ucItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\FrogetPassword.cs">
+    <Compile Include="View\FrogetPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FrogetPassword.Designer.cs">
-      <DependentUpon>FrogetPassword.cs</DependentUpon>
+    <Compile Include="View\FrogetPasswordForm.Designer.cs">
+      <DependentUpon>FrogetPasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -120,8 +121,8 @@
     <EmbeddedResource Include="View\ucItems.resx">
       <DependentUpon>ucItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\FrogetPassword.resx">
-      <DependentUpon>FrogetPassword.cs</DependentUpon>
+    <EmbeddedResource Include="View\FrogetPasswordForm.resx">
+      <DependentUpon>FrogetPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

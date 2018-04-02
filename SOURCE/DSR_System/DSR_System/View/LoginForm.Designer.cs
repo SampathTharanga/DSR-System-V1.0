@@ -206,6 +206,7 @@
             this.llblFroget.TabIndex = 36;
             this.llblFroget.TabStop = true;
             this.llblFroget.Text = "Froget password?";
+            this.llblFroget.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblFroget_LinkClicked);
             // 
             // LoginForm
             // 

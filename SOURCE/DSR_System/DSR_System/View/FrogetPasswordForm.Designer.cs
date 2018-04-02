@@ -1,6 +1,6 @@
 ﻿namespace DSR_System
 {
-    partial class FrogetPassword
+    partial class FrogetPasswordForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrogetPassword));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrogetPasswordForm));
             this.btnExit = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -53,6 +53,7 @@
             this.btnExit.TabIndex = 22;
             this.btnExit.TabStop = false;
             this.btnExit.Zoom = 10;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // bunifuCustomLabel1
             // 
@@ -139,6 +140,7 @@
             this.btnRecover.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnRecover.Textcolor = System.Drawing.Color.White;
             this.btnRecover.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecover.Click += new System.EventHandler(this.btnRecover_Click);
             // 
             // panel1
             // 
@@ -176,7 +178,7 @@
             this.cbxSecQue.Size = new System.Drawing.Size(340, 29);
             this.cbxSecQue.TabIndex = 51;
             // 
-            // FrogetPassword
+            // FrogetPasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -186,7 +188,7 @@
             this.Controls.Add(this.bunifuCustomLabel1);
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrogetPassword";
+            this.Name = "FrogetPasswordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrogetPassword";
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();

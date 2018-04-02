@@ -31,7 +31,8 @@ namespace DSR_System
         SqlConnection con = new SqlConnection(conStr);
 
         //VARIABLE DECLARATION
-        decimal DEFAULT_VAL = 0.00m, totValue = 0.00m;
+        decimal totValue = 0.00m;
+        decimal cash = 0.00m, cheque = 0.00m, credit = 0.00m, discount = 0.00m, expenses = 0.00m, expiri = 0.00m, gasOut = 0.00m, giveGoods = 0.00m, gaveGoods = 0.00m, shortEmpty = 0.00m, excessEmpty = 0.00m;
 
         public ucUnload()
         {
@@ -68,7 +69,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -91,7 +92,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -104,136 +105,173 @@ namespace DSR_System
         //SALES AND VALUES CALCULATION
         void SalesAndValues()
         {
-            int salesBottle = 0, OneCaseBot = 0, loadBottle = 0, loadCase = 0, unLoadBottle = 0, unLoadCase = 0;
-            int totLoadBottle = 0, totUnloadBottle = 0, salesTotBottle = 0;
-            decimal OneBotPrice = 0.00m, value = 0.00m;
-            totValue = 0.00m;
-
-            for (int row = 0; row < dataGridViewUnload.Rows.Count; ++row)
+            try
             {
-                //ALL VARIABLES SET DEFAULT ZEloadBottleRO
-                OneCaseBot = 0; OneBotPrice = 0.00m; loadBottle = 0; loadCase = 0; unLoadBottle = 0; unLoadCase = 0;
-                totLoadBottle = 0; salesBottle = 0; value = 0.00m;
+                int salesBottle = 0, OneCaseBot = 0, loadBottle = 0, loadCase = 0, unLoadBottle = 0, unLoadCase = 0;
+                int totLoadBottle = 0, totUnloadBottle = 0, salesTotBottle = 0;
+                decimal OneBotPrice = 0.00m, value = 0.00m;
+                totValue = 0.00m;
 
-                //GET ITEM TABLE DETAILS
-                SqlCommand cmd1 = new SqlCommand("SELECT * FROM Item_Table WHERE ItemName = '" + dataGridViewUnload.Rows[row].Cells["ItemName"].Value.ToString() + "'", con);
-                con.Open();
-                SqlDataReader dr1 = cmd1.ExecuteReader();
-                if (dr1.Read() == true)
+                for (int row = 0; row < dataGridViewUnload.Rows.Count; ++row)
                 {
-                    OneCaseBot = int.Parse(dr1["OnceCaseBottle"].ToString());
-                    OneBotPrice = Convert.ToDecimal(dr1["OneBotPrice"].ToString());
+                    //ALL VARIABLES SET DEFAULT ZEloadBottleRO
+                    OneCaseBot = 0; OneBotPrice = 0.00m; loadBottle = 0; loadCase = 0; unLoadBottle = 0; unLoadCase = 0;
+                    totLoadBottle = 0; salesBottle = 0; value = 0.00m;
+
+                    //GET ITEM TABLE DETAILS
+                    SqlCommand cmd1 = new SqlCommand("SELECT * FROM Item_Table WHERE ItemName = '" + dataGridViewUnload.Rows[row].Cells["ItemName"].Value.ToString() + "'", con);
+                    con.Open();
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    if (dr1.Read() == true)
+                    {
+                        OneCaseBot = int.Parse(dr1["OnceCaseBottle"].ToString());
+                        OneBotPrice = Convert.ToDecimal(dr1["OneBotPrice"].ToString());
+                    }
+                    con.Close();
+
+                    //GET LOAD DETAILS
+                    loadBottle = int.Parse(dataGridViewUnload.Rows[row].Cells["LoadBottle"].Value.ToString());
+                    loadCase = int.Parse(dataGridViewUnload.Rows[row].Cells["LoadCases"].Value.ToString());
+
+                    //GET UNLOAD DETAILS
+                    unLoadBottle = int.Parse(dataGridViewUnload.Rows[row].Cells["UnloadBottle"].Value.ToString());
+                    unLoadCase = int.Parse(dataGridViewUnload.Rows[row].Cells["UnloadCases"].Value.ToString());
+
+                    //TOTAL LOAD BOTTLE
+                    totLoadBottle = (loadCase * OneCaseBot) + loadBottle;
+
+                    //TOTAL UNLOAD BOTTLE
+                    totUnloadBottle = (unLoadCase * OneCaseBot) + unLoadBottle;
+
+                    //SALES BOTTLE
+                    salesBottle = totLoadBottle - totUnloadBottle;
+
+                    //SALES BOTTLE DISPLAY IN THE DATAGRIVIEW
+                    dataGridViewUnload.Rows[row].Cells["SaleBottle"].Value = salesBottle.ToString();
+
+                    //CALULATE VALUE
+                    value = salesBottle * OneBotPrice;
+
+                    //VALUE DISPLAY DATAGRIDVIEW
+                    dataGridViewUnload.Rows[row].Cells["Value"].Value = value.ToString();
+
+                    //CALCULATE SALES TOTAL BOTTLE
+                    salesTotBottle += int.Parse(dataGridViewUnload.Rows[row].Cells["SaleBottle"].Value.ToString());
+
+                    //CALCULATE TOTAL VALUE
+                    totValue += Convert.ToDecimal(dataGridViewUnload.Rows[row].Cells["Value"].Value.ToString());
                 }
-                con.Close();
-
-                //GET LOAD DETAILS
-                loadBottle = int.Parse(dataGridViewUnload.Rows[row].Cells["LoadBottle"].Value.ToString());
-                loadCase = int.Parse(dataGridViewUnload.Rows[row].Cells["LoadCases"].Value.ToString());
-
-                //GET UNLOAD DETAILS
-                unLoadBottle = int.Parse(dataGridViewUnload.Rows[row].Cells["UnloadBottle"].Value.ToString());
-                unLoadCase = int.Parse(dataGridViewUnload.Rows[row].Cells["UnloadCases"].Value.ToString());
-
-                //TOTAL LOAD BOTTLE
-                totLoadBottle = (loadCase * OneCaseBot) + loadBottle;
-
-                //TOTAL UNLOAD BOTTLE
-                totUnloadBottle = (unLoadCase * OneCaseBot) + unLoadBottle;
-
-                //SALES BOTTLE
-                salesBottle = totLoadBottle - totUnloadBottle;
-
-                //SALES BOTTLE DISPLAY IN THE DATAGRIVIEW
-                dataGridViewUnload.Rows[row].Cells["SaleBottle"].Value = salesBottle.ToString();
-
-                //CALULATE VALUE
-                value = salesBottle * OneBotPrice;
-
-                //VALUE DISPLAY DATAGRIDVIEW
-                dataGridViewUnload.Rows[row].Cells["Value"].Value = value.ToString();
-
-                //CALCULATE SALES TOTAL BOTTLE
-                salesTotBottle += int.Parse(dataGridViewUnload.Rows[row].Cells["SaleBottle"].Value.ToString());
-
-                //CALCULATE TOTAL VALUE
-                totValue += Convert.ToDecimal(dataGridViewUnload.Rows[row].Cells["Value"].Value.ToString());
+                lblTotBottle.Text = salesTotBottle.ToString();
+                lblTotValue.Text = "Rs " + totValue.ToString();
             }
-            lblTotBottle.Text = salesTotBottle.ToString();
-            lblTotValue.Text = "Rs " + totValue.ToString();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
         // PROCESS CALCULATION METHOD
         void ProcessCalc()
         {
-            decimal processVal1 = 0.00m, processVal2 = 0.00m, processVal3 = 0.00m;
-
-            if (
-                decimal.TryParse(txtCash.Text, out decimal cash) &&
-                decimal.TryParse(txtCheque.Text, out decimal cheque) &&
-                decimal.TryParse(txtCredit.Text, out decimal credit) &&
-                decimal.TryParse(txtDiscount.Text, out decimal discount) &&
-                decimal.TryParse(txtExpenses.Text, out decimal expenses) &&
-                decimal.TryParse(txtExpairi.Text, out decimal expiri) &&
-                decimal.TryParse(txtGasOut.Text, out decimal gasOut) &&
-                decimal.TryParse(txtGiveGoods.Text, out decimal giveGoods) &&
-                decimal.TryParse(txtGaveGoods.Text, out decimal gaveGoods) &&
-                decimal.TryParse(txtShortEmpty.Text, out decimal shortEmpty) &&
-                decimal.TryParse(txtExcessEmpty.Text, out decimal excessEmpty)
-                )
+            try
             {
-                //SHORT AND EXCESS EMPTY
-                processVal1 = (totValue + shortEmpty) - excessEmpty;
+                decimal processVal1 = 0.00m, processVal2 = 0.00m, processVal3 = 0.00m;
 
-                processVal2 = processVal1 - (cash + cheque + credit + discount + expenses + expiri + gasOut);
-
-                //TO GAVE NAD GIVE
-                processVal3 = (processVal2 + gaveGoods) - giveGoods;
-
-                //NEGATIVE TO POSSITIVE
-                decimal non_neg_processVal3 = Math.Abs(processVal3);
-
-                //MAKE THE DECISIONS "SHORT" OR "EXCESS"
-                if (totValue > non_neg_processVal3)
+                if (
+                    decimal.TryParse(txtCash.Text, out cash) &&
+                    decimal.TryParse(txtCheque.Text, out cheque) &&
+                    decimal.TryParse(txtCredit.Text, out credit) &&
+                    decimal.TryParse(txtDiscount.Text, out discount) &&
+                    decimal.TryParse(txtExpenses.Text, out expenses) &&
+                    decimal.TryParse(txtExpairi.Text, out expiri) &&
+                    decimal.TryParse(txtGasOut.Text, out gasOut) &&
+                    decimal.TryParse(txtGiveGoods.Text, out giveGoods) &&
+                    decimal.TryParse(txtGaveGoods.Text, out gaveGoods) &&
+                    decimal.TryParse(txtShortEmpty.Text, out shortEmpty) &&
+                    decimal.TryParse(txtExcessEmpty.Text, out excessEmpty)
+                    )
                 {
-                    //SHORT 
-                    lblShortExcess.Text = "Short";
-                    lblShortExcess.ForeColor = Color.Red;
-                    //ShortBlink();
+                    //SHORT AND EXCESS EMPTY
+                    processVal1 = (totValue + shortEmpty) - excessEmpty;
+
+                    processVal2 = processVal1 - (cash + cheque + credit + discount + expenses + expiri + gasOut);
+
+                    //TO GAVE NAD GIVE
+                    processVal3 = (processVal2 + gaveGoods) - giveGoods;
+
+                    //NEGATIVE TO POSSITIVE
+                    decimal non_neg_processVal3 = Math.Abs(processVal3);
+
+                    //MAKE THE DECISIONS "SHORT" OR "EXCESS"
+                    if (totValue > non_neg_processVal3)
+                    {
+                        //SHORT 
+                        lblShortExcess.Text = "Short";
+                        lblShortExcess.ForeColor = Color.Red;
+                        //ShortBlink();
+                    }
+                    else if (totValue < non_neg_processVal3)
+                    {
+                        //EXCESS
+                        lblShortExcess.Text = "Excess";
+                        lblShortExcess.ForeColor = Color.ForestGreen;
+                        //ExcessBlink();
+                    }
+                    else MessageBox.Show("Process Error!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (totValue < non_neg_processVal3)
-                {
-                    //EXCESS
-                    lblShortExcess.Text = "Excess";
-                    lblShortExcess.ForeColor = Color.ForestGreen;
-                    //ExcessBlink();
-                }
-                else MessageBox.Show("Process Error!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("You must fill the each values!", "Can't be Blank", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-                MessageBox.Show("You must fill the each values!", "Can't be Blank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        //SAVE PROCESS ALL DATA
+        DeliveryClass ObjDelivery = new DeliveryClass();
+        void SaveProcess()
+        {
+            try
+            {
+                ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
+                MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        ////SHORT RESULT LINK BLINK CODE
-        //private async void ShortBlink()
-        //{
-        //    while (true)
-        //    {
-        //        await Task.Delay(500);
-        //        lblShortExcess.ForeColor = lblShortExcess.ForeColor == Color.Red ? Color.Orange : Color.Red;
-        //    }
-        //}
+                AfterSaveClearAll(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-        ////EXCESS RESULT LINK BLINK CODE
-        //private async void ExcessBlink()
-        //{
-        //    while (true)
-        //    {
-        //        await Task.Delay(500);
-        //        lblShortExcess.ForeColor = lblShortExcess.ForeColor == Color.SeaGreen ? Color.LightGreen : Color.SeaGreen;
-        //    }
-        //}
+        //RESET ALL CONTROL
+        void AfterSaveClearAll(Control con)
+        {
+            try
+            {
+                foreach (Control c in con.Controls)
+                {
+                    if (c is TextBox)
+                        ((TextBox)c).Text = "0.00";
+
+                    if (c is ComboBox)
+                        ((ComboBox)c).SelectedIndex = -1;
+                    else
+                        AfterSaveClearAll(c);
+                }
+                txtRoute.Text = string.Empty;
+                lblShortExcess.Text = string.Empty;
+
+                //CLEAR DATAGRIDVIEW
+                dataGridViewUnload.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void txtCash_Click(object sender, EventArgs e)
         {
@@ -242,9 +280,16 @@ namespace DSR_System
 
         private void dataGridViewUnload_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewUnload.Columns[e.ColumnIndex].Name == "UnloadBottle" || dataGridViewUnload.Columns[e.ColumnIndex].Name == "UnloadCases")
+            try
             {
-                SalesAndValues();
+                if (dataGridViewUnload.Columns[e.ColumnIndex].Name == "UnloadBottle" || dataGridViewUnload.Columns[e.ColumnIndex].Name == "UnloadCases")
+                {
+                    SalesAndValues();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -312,6 +357,11 @@ namespace DSR_System
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
                 e.Handled = true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnProcess_Click(object sender, EventArgs e)

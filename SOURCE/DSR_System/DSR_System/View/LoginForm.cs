@@ -73,5 +73,11 @@ namespace DSR_System
                 MessageBox.Show(ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void llblFroget_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrogetPasswordForm frmForget = new FrogetPasswordForm();
+            frmForget.ShowDialog();
+        }
     }
 }
