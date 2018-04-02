@@ -32,7 +32,7 @@ namespace DSR_System
             }
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        void LoginFunction()
         {
             if (!string.IsNullOrEmpty(txtUseName.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
@@ -51,6 +51,26 @@ namespace DSR_System
                     txtPassword.Text = string.Empty;
                     txtUseName.Text = string.Empty;
                 }
+            }
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            LoginFunction();
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    LoginFunction();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

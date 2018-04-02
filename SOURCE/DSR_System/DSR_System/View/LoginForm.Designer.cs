@@ -111,6 +111,7 @@
             this.txtPassword.Size = new System.Drawing.Size(340, 29);
             this.txtPassword.TabIndex = 11;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // btnSignIn
             // 

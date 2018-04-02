@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DSR_System
 {
@@ -28,10 +30,15 @@ namespace DSR_System
         static string conStr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
         SqlConnection con = new SqlConnection(conStr);
 
+        //VARIABLE DECLARATION
+        decimal DEFAULT_VAL = 0.00m, totValue = 0.00m;
+
         public ucUnload()
         {
             InitializeComponent();
         }
+
+        #region SELECTED DSR DATA LOAD
         void SelectedDsrDataLoad()
         {
             try
@@ -64,6 +71,7 @@ namespace DSR_System
                 MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
         private void ucUnload_Load(object sender, EventArgs e)
         {
@@ -92,11 +100,14 @@ namespace DSR_System
             SelectedDsrDataLoad();
         }
 
+        #region SALES AND VALUES CALCULATION
+        //SALES AND VALUES CALCULATION
         void SalesAndValues()
         {
             int salesBottle = 0, OneCaseBot = 0, loadBottle = 0, loadCase = 0, unLoadBottle = 0, unLoadCase = 0;
             int totLoadBottle = 0, totUnloadBottle = 0, salesTotBottle = 0;
-            decimal OneBotPrice = 0.00m, value = 0.00m, totValue = 0.00m;
+            decimal OneBotPrice = 0.00m, value = 0.00m;
+            totValue = 0.00m;
 
             for (int row = 0; row < dataGridViewUnload.Rows.Count; ++row)
             {
@@ -104,7 +115,7 @@ namespace DSR_System
                 OneCaseBot = 0; OneBotPrice = 0.00m; loadBottle = 0; loadCase = 0; unLoadBottle = 0; unLoadCase = 0;
                 totLoadBottle = 0; salesBottle = 0; value = 0.00m;
 
-                 //GET ITEM TABLE DETAILS
+                //GET ITEM TABLE DETAILS
                 SqlCommand cmd1 = new SqlCommand("SELECT * FROM Item_Table WHERE ItemName = '" + dataGridViewUnload.Rows[row].Cells["ItemName"].Value.ToString() + "'", con);
                 con.Open();
                 SqlDataReader dr1 = cmd1.ExecuteReader();
@@ -150,6 +161,79 @@ namespace DSR_System
             lblTotBottle.Text = salesTotBottle.ToString();
             lblTotValue.Text = "Rs " + totValue.ToString();
         }
+        #endregion
+
+        // PROCESS CALCULATION METHOD
+        void ProcessCalc()
+        {
+            decimal processVal1 = 0.00m, processVal2 = 0.00m, processVal3 = 0.00m;
+
+            if (
+                decimal.TryParse(txtCash.Text, out decimal cash) &&
+                decimal.TryParse(txtCheque.Text, out decimal cheque) &&
+                decimal.TryParse(txtCredit.Text, out decimal credit) &&
+                decimal.TryParse(txtDiscount.Text, out decimal discount) &&
+                decimal.TryParse(txtExpenses.Text, out decimal expenses) &&
+                decimal.TryParse(txtExpairi.Text, out decimal expiri) &&
+                decimal.TryParse(txtGasOut.Text, out decimal gasOut) &&
+                decimal.TryParse(txtGiveGoods.Text, out decimal giveGoods) &&
+                decimal.TryParse(txtGaveGoods.Text, out decimal gaveGoods) &&
+                decimal.TryParse(txtShortEmpty.Text, out decimal shortEmpty) &&
+                decimal.TryParse(txtExcessEmpty.Text, out decimal excessEmpty)
+                )
+            {
+                //SHORT AND EXCESS EMPTY
+                processVal1 = (totValue + shortEmpty) - excessEmpty;
+
+                processVal2 = processVal1 - (cash + cheque + credit + discount + expenses + expiri + gasOut);
+
+                //TO GAVE NAD GIVE
+                processVal3 = (processVal2 + gaveGoods) - giveGoods;
+
+                //NEGATIVE TO POSSITIVE
+                decimal non_neg_processVal3 = Math.Abs(processVal3);
+
+                //MAKE THE DECISIONS "SHORT" OR "EXCESS"
+                if (totValue > non_neg_processVal3)
+                {
+                    //SHORT 
+                    lblShortExcess.Text = "Short";
+                    lblShortExcess.ForeColor = Color.Red;
+                    //ShortBlink();
+                }
+                else if (totValue < non_neg_processVal3)
+                {
+                    //EXCESS
+                    lblShortExcess.Text = "Excess";
+                    lblShortExcess.ForeColor = Color.ForestGreen;
+                    //ExcessBlink();
+                }
+                else MessageBox.Show("Process Error!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("You must fill the each values!", "Can't be Blank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+        ////SHORT RESULT LINK BLINK CODE
+        //private async void ShortBlink()
+        //{
+        //    while (true)
+        //    {
+        //        await Task.Delay(500);
+        //        lblShortExcess.ForeColor = lblShortExcess.ForeColor == Color.Red ? Color.Orange : Color.Red;
+        //    }
+        //}
+
+        ////EXCESS RESULT LINK BLINK CODE
+        //private async void ExcessBlink()
+        //{
+        //    while (true)
+        //    {
+        //        await Task.Delay(500);
+        //        lblShortExcess.ForeColor = lblShortExcess.ForeColor == Color.SeaGreen ? Color.LightGreen : Color.SeaGreen;
+        //    }
+        //}
 
         private void txtCash_Click(object sender, EventArgs e)
         {
@@ -164,42 +248,75 @@ namespace DSR_System
             }
         }
 
-        private void dataGridViewUnload_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (dataGridViewUnload.Columns[e.ColumnIndex].Name == "Reference")
-            {
-                //your code goes here
-            }
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
         }
 
-        private void txtRoute_KeyDown(object sender, KeyEventArgs e)
+        private void txtCheque_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //SEARCH DSR DATA LOAD TO DATAGRIDVIEW
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    dataGridViewUnload.Columns["ItemName"].ReadOnly = true;
-            //    dataGridViewUnload.Columns["LoadCases"].ReadOnly = true;
-            //    dataGridViewUnload.Columns["LoadBottle"].ReadOnly = true;
-            //    dataGridViewUnload.Columns["SaleBottle"].ReadOnly = true;
-            //    dataGridViewUnload.Columns["Value"].ReadOnly = true;
-            //    SqlDataAdapter da1 = new SqlDataAdapter("SELECT ItemName, LoadCases, LoadBottle, UnloadCases, UnloadBottle, SaleBottle, Value FROM LoadUnload_Table WHERE Route = '" + txtRoute.Text + "'", con);
-            //    con.Open();
-            //    DataTable dt1 = new DataTable();
-            //    da1.Fill(dt1);
-            //    con.Close();
-            //    dataGridViewUnload.Rows.Clear();
-            //    foreach (DataRow item in dt1.Rows)
-            //    {
-            //        int n = dataGridViewUnload.Rows.Add();
-            //        dataGridViewUnload.Rows[n].Cells[0].Value = item["ItemName"].ToString();
-            //        dataGridViewUnload.Rows[n].Cells[1].Value = item["LoadCases"].ToString();
-            //        dataGridViewUnload.Rows[n].Cells[2].Value = item["LoadBottle"].ToString();
-            //        dataGridViewUnload.Rows[n].Cells[3].Value = item["UnloadCases"].ToString();
-            //        dataGridViewUnload.Rows[n].Cells[4].Value = item["UnloadBottle"].ToString();
-            //        dataGridViewUnload.Rows[n].Cells[5].Value = item["SaleBottle"].ToString();
-            //        dataGridViewUnload.Rows[n].Cells[6].Value = item["Value"].ToString();
-            //    }
-            //}
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtCredit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtExpenses_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtExpairi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtGasOut_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtGiveGoods_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = RecreatingHandle;
+        }
+
+        private void txtGaveGoods_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtShortEmpty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void txtExcessEmpty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
+                e.Handled = true;
+        }
+
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            ProcessCalc();
         }
     }
 }

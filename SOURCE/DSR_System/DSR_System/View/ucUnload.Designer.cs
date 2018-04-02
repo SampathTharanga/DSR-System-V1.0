@@ -37,6 +37,13 @@
             this.txtRoute = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.dataGridViewUnload = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoadCases = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoadBottle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnloadCases = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnloadBottle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleBottle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCash = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel4 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel5 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -46,17 +53,17 @@
             this.bunifuCustomLabel7 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtDiscount = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel8 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.txtExpensees = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.txtExpenses = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel9 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtExpairi = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel10 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtGasOut = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel11 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtGiveGoods = new Bunifu.Framework.UI.BunifuMetroTextbox();
-            this.txtEmptyBottle = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.txtShortEmpty = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel12 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel13 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.txtEmptyCase = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.txtExcessEmpty = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomLabel14 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtGaveGoods = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.lblShortExcess = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -71,13 +78,6 @@
             this.cbxDSRname = new Bunifu.Framework.UI.BunifuDropdown();
             this.bunifuCustomLabel15 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel16 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoadCases = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoadBottle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnloadCases = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnloadBottle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleBottle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUnload)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -121,7 +121,6 @@
             this.txtRoute.Size = new System.Drawing.Size(180, 30);
             this.txtRoute.TabIndex = 8;
             this.txtRoute.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtRoute.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRoute_KeyDown);
             // 
             // bunifuCustomLabel1
             // 
@@ -185,7 +184,48 @@
             this.dataGridViewUnload.Size = new System.Drawing.Size(706, 271);
             this.dataGridViewUnload.TabIndex = 0;
             this.dataGridViewUnload.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUnload_CellEndEdit);
-            this.dataGridViewUnload.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUnload_CellValueChanged);
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Item Name";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 255;
+            // 
+            // LoadCases
+            // 
+            this.LoadCases.HeaderText = "Load Case";
+            this.LoadCases.Name = "LoadCases";
+            this.LoadCases.Width = 60;
+            // 
+            // LoadBottle
+            // 
+            this.LoadBottle.HeaderText = "Load Bottle";
+            this.LoadBottle.Name = "LoadBottle";
+            this.LoadBottle.Width = 60;
+            // 
+            // UnloadCases
+            // 
+            this.UnloadCases.HeaderText = "Unload Case";
+            this.UnloadCases.Name = "UnloadCases";
+            this.UnloadCases.Width = 60;
+            // 
+            // UnloadBottle
+            // 
+            this.UnloadBottle.HeaderText = "Unload Bottle";
+            this.UnloadBottle.Name = "UnloadBottle";
+            this.UnloadBottle.Width = 60;
+            // 
+            // SaleBottle
+            // 
+            this.SaleBottle.HeaderText = "Sale Bottle";
+            this.SaleBottle.Name = "SaleBottle";
+            this.SaleBottle.Width = 60;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.Width = 150;
             // 
             // txtCash
             // 
@@ -202,8 +242,10 @@
             this.txtCash.Name = "txtCash";
             this.txtCash.Size = new System.Drawing.Size(120, 25);
             this.txtCash.TabIndex = 13;
+            this.txtCash.Text = "0.00";
             this.txtCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCash.Click += new System.EventHandler(this.txtCash_Click);
+            this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCash_KeyPress);
             // 
             // bunifuCustomLabel4
             // 
@@ -242,7 +284,9 @@
             this.txtCheque.Name = "txtCheque";
             this.txtCheque.Size = new System.Drawing.Size(120, 25);
             this.txtCheque.TabIndex = 15;
+            this.txtCheque.Text = "0.00";
             this.txtCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCheque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCheque_KeyPress);
             // 
             // bunifuCustomLabel6
             // 
@@ -270,7 +314,9 @@
             this.txtCredit.Name = "txtCredit";
             this.txtCredit.Size = new System.Drawing.Size(120, 25);
             this.txtCredit.TabIndex = 17;
+            this.txtCredit.Text = "0.00";
             this.txtCredit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCredit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCredit_KeyPress);
             // 
             // bunifuCustomLabel7
             // 
@@ -298,7 +344,9 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(120, 25);
             this.txtDiscount.TabIndex = 19;
+            this.txtDiscount.Text = "0.00";
             this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
             // 
             // bunifuCustomLabel8
             // 
@@ -311,22 +359,24 @@
             this.bunifuCustomLabel8.TabIndex = 22;
             this.bunifuCustomLabel8.Text = "Expenses:";
             // 
-            // txtExpensees
+            // txtExpenses
             // 
-            this.txtExpensees.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
-            this.txtExpensees.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
-            this.txtExpensees.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
-            this.txtExpensees.BorderThickness = 3;
-            this.txtExpensees.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtExpensees.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtExpensees.ForeColor = System.Drawing.Color.White;
-            this.txtExpensees.isPassword = false;
-            this.txtExpensees.Location = new System.Drawing.Point(81, 159);
-            this.txtExpensees.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExpensees.Name = "txtExpensees";
-            this.txtExpensees.Size = new System.Drawing.Size(120, 25);
-            this.txtExpensees.TabIndex = 21;
-            this.txtExpensees.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtExpenses.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
+            this.txtExpenses.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
+            this.txtExpenses.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
+            this.txtExpenses.BorderThickness = 3;
+            this.txtExpenses.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtExpenses.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtExpenses.ForeColor = System.Drawing.Color.White;
+            this.txtExpenses.isPassword = false;
+            this.txtExpenses.Location = new System.Drawing.Point(81, 159);
+            this.txtExpenses.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExpenses.Name = "txtExpenses";
+            this.txtExpenses.Size = new System.Drawing.Size(120, 25);
+            this.txtExpenses.TabIndex = 21;
+            this.txtExpenses.Text = "0.00";
+            this.txtExpenses.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtExpenses.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExpenses_KeyPress);
             // 
             // bunifuCustomLabel9
             // 
@@ -354,7 +404,9 @@
             this.txtExpairi.Name = "txtExpairi";
             this.txtExpairi.Size = new System.Drawing.Size(120, 25);
             this.txtExpairi.TabIndex = 23;
+            this.txtExpairi.Text = "0.00";
             this.txtExpairi.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtExpairi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExpairi_KeyPress);
             // 
             // bunifuCustomLabel10
             // 
@@ -382,7 +434,9 @@
             this.txtGasOut.Name = "txtGasOut";
             this.txtGasOut.Size = new System.Drawing.Size(120, 25);
             this.txtGasOut.TabIndex = 25;
+            this.txtGasOut.Text = "0.00";
             this.txtGasOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtGasOut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGasOut_KeyPress);
             // 
             // bunifuCustomLabel11
             // 
@@ -410,24 +464,28 @@
             this.txtGiveGoods.Name = "txtGiveGoods";
             this.txtGiveGoods.Size = new System.Drawing.Size(120, 25);
             this.txtGiveGoods.TabIndex = 27;
+            this.txtGiveGoods.Text = "0.00";
             this.txtGiveGoods.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtGiveGoods.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiveGoods_KeyPress);
             // 
-            // txtEmptyBottle
+            // txtShortEmpty
             // 
-            this.txtEmptyBottle.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
-            this.txtEmptyBottle.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
-            this.txtEmptyBottle.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
-            this.txtEmptyBottle.BorderThickness = 3;
-            this.txtEmptyBottle.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEmptyBottle.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtEmptyBottle.ForeColor = System.Drawing.Color.White;
-            this.txtEmptyBottle.isPassword = false;
-            this.txtEmptyBottle.Location = new System.Drawing.Point(108, 13);
-            this.txtEmptyBottle.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmptyBottle.Name = "txtEmptyBottle";
-            this.txtEmptyBottle.Size = new System.Drawing.Size(120, 25);
-            this.txtEmptyBottle.TabIndex = 27;
-            this.txtEmptyBottle.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtShortEmpty.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
+            this.txtShortEmpty.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
+            this.txtShortEmpty.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
+            this.txtShortEmpty.BorderThickness = 3;
+            this.txtShortEmpty.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtShortEmpty.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtShortEmpty.ForeColor = System.Drawing.Color.White;
+            this.txtShortEmpty.isPassword = false;
+            this.txtShortEmpty.Location = new System.Drawing.Point(108, 13);
+            this.txtShortEmpty.Margin = new System.Windows.Forms.Padding(4);
+            this.txtShortEmpty.Name = "txtShortEmpty";
+            this.txtShortEmpty.Size = new System.Drawing.Size(120, 25);
+            this.txtShortEmpty.TabIndex = 27;
+            this.txtShortEmpty.Text = "0.00";
+            this.txtShortEmpty.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtShortEmpty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShortEmpty_KeyPress);
             // 
             // bunifuCustomLabel12
             // 
@@ -436,9 +494,9 @@
             this.bunifuCustomLabel12.ForeColor = System.Drawing.Color.White;
             this.bunifuCustomLabel12.Location = new System.Drawing.Point(11, 18);
             this.bunifuCustomLabel12.Name = "bunifuCustomLabel12";
-            this.bunifuCustomLabel12.Size = new System.Drawing.Size(78, 15);
+            this.bunifuCustomLabel12.Size = new System.Drawing.Size(76, 15);
             this.bunifuCustomLabel12.TabIndex = 28;
-            this.bunifuCustomLabel12.Text = "Empty Bottle:";
+            this.bunifuCustomLabel12.Text = "Short Empty:";
             // 
             // bunifuCustomLabel13
             // 
@@ -447,26 +505,28 @@
             this.bunifuCustomLabel13.ForeColor = System.Drawing.Color.White;
             this.bunifuCustomLabel13.Location = new System.Drawing.Point(11, 50);
             this.bunifuCustomLabel13.Name = "bunifuCustomLabel13";
-            this.bunifuCustomLabel13.Size = new System.Drawing.Size(75, 15);
+            this.bunifuCustomLabel13.Size = new System.Drawing.Size(86, 15);
             this.bunifuCustomLabel13.TabIndex = 30;
-            this.bunifuCustomLabel13.Text = "Empty Case:";
+            this.bunifuCustomLabel13.Text = "Excess Empty:";
             // 
-            // txtEmptyCase
+            // txtExcessEmpty
             // 
-            this.txtEmptyCase.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
-            this.txtEmptyCase.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
-            this.txtEmptyCase.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
-            this.txtEmptyCase.BorderThickness = 3;
-            this.txtEmptyCase.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEmptyCase.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtEmptyCase.ForeColor = System.Drawing.Color.White;
-            this.txtEmptyCase.isPassword = false;
-            this.txtEmptyCase.Location = new System.Drawing.Point(108, 45);
-            this.txtEmptyCase.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmptyCase.Name = "txtEmptyCase";
-            this.txtEmptyCase.Size = new System.Drawing.Size(120, 25);
-            this.txtEmptyCase.TabIndex = 29;
-            this.txtEmptyCase.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtExcessEmpty.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
+            this.txtExcessEmpty.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
+            this.txtExcessEmpty.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(177)))), ((int)(((byte)(136)))));
+            this.txtExcessEmpty.BorderThickness = 3;
+            this.txtExcessEmpty.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtExcessEmpty.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtExcessEmpty.ForeColor = System.Drawing.Color.White;
+            this.txtExcessEmpty.isPassword = false;
+            this.txtExcessEmpty.Location = new System.Drawing.Point(108, 45);
+            this.txtExcessEmpty.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExcessEmpty.Name = "txtExcessEmpty";
+            this.txtExcessEmpty.Size = new System.Drawing.Size(120, 25);
+            this.txtExcessEmpty.TabIndex = 29;
+            this.txtExcessEmpty.Text = "0.00";
+            this.txtExcessEmpty.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtExcessEmpty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExcessEmpty_KeyPress);
             // 
             // bunifuCustomLabel14
             // 
@@ -494,16 +554,18 @@
             this.txtGaveGoods.Name = "txtGaveGoods";
             this.txtGaveGoods.Size = new System.Drawing.Size(120, 25);
             this.txtGaveGoods.TabIndex = 31;
+            this.txtGaveGoods.Text = "0.00";
             this.txtGaveGoods.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtGaveGoods.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGaveGoods_KeyPress);
             // 
             // lblShortExcess
             // 
             this.lblShortExcess.AutoSize = true;
-            this.lblShortExcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShortExcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShortExcess.ForeColor = System.Drawing.Color.White;
-            this.lblShortExcess.Location = new System.Drawing.Point(544, 491);
+            this.lblShortExcess.Location = new System.Drawing.Point(533, 487);
             this.lblShortExcess.Name = "lblShortExcess";
-            this.lblShortExcess.Size = new System.Drawing.Size(102, 31);
+            this.lblShortExcess.Size = new System.Drawing.Size(127, 39);
             this.lblShortExcess.TabIndex = 33;
             this.lblShortExcess.Text = "Excess";
             // 
@@ -551,7 +613,7 @@
             this.groupBox1.Controls.Add(this.txtExpairi);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel8);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel11);
-            this.groupBox1.Controls.Add(this.txtExpensees);
+            this.groupBox1.Controls.Add(this.txtExpenses);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel7);
             this.groupBox1.Controls.Add(this.txtGiveGoods);
             this.groupBox1.Controls.Add(this.txtDiscount);
@@ -570,9 +632,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.bunifuCustomLabel13);
-            this.groupBox2.Controls.Add(this.txtEmptyCase);
+            this.groupBox2.Controls.Add(this.txtExcessEmpty);
             this.groupBox2.Controls.Add(this.bunifuCustomLabel12);
-            this.groupBox2.Controls.Add(this.txtEmptyBottle);
+            this.groupBox2.Controls.Add(this.txtShortEmpty);
             this.groupBox2.Location = new System.Drawing.Point(472, 386);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(247, 79);
@@ -613,7 +675,6 @@
             this.lblTotValue.Size = new System.Drawing.Size(129, 17);
             this.lblTotValue.TabIndex = 38;
             this.lblTotValue.Text = "Rs 0000000000.00";
-            this.lblTotValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnProcess
             // 
@@ -648,11 +709,12 @@
             this.btnProcess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProcess.Textcolor = System.Drawing.Color.White;
             this.btnProcess.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // btnLoad
             // 
             this.btnLoad.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btnLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLoad.BorderRadius = 0;
             this.btnLoad.ButtonText = "LOAD";
@@ -721,48 +783,6 @@
             this.bunifuCustomLabel16.TabIndex = 43;
             this.bunifuCustomLabel16.Text = "Total Value:";
             // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 255;
-            // 
-            // LoadCases
-            // 
-            this.LoadCases.HeaderText = "Load Case";
-            this.LoadCases.Name = "LoadCases";
-            this.LoadCases.Width = 60;
-            // 
-            // LoadBottle
-            // 
-            this.LoadBottle.HeaderText = "Load Bottle";
-            this.LoadBottle.Name = "LoadBottle";
-            this.LoadBottle.Width = 60;
-            // 
-            // UnloadCases
-            // 
-            this.UnloadCases.HeaderText = "Unload Case";
-            this.UnloadCases.Name = "UnloadCases";
-            this.UnloadCases.Width = 60;
-            // 
-            // UnloadBottle
-            // 
-            this.UnloadBottle.HeaderText = "Unload Bottle";
-            this.UnloadBottle.Name = "UnloadBottle";
-            this.UnloadBottle.Width = 60;
-            // 
-            // SaleBottle
-            // 
-            this.SaleBottle.HeaderText = "Sale Bottle";
-            this.SaleBottle.Name = "SaleBottle";
-            this.SaleBottle.Width = 60;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.Width = 150;
-            // 
             // ucUnload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -813,17 +833,17 @@
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel7;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtDiscount;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel8;
-        private Bunifu.Framework.UI.BunifuMetroTextbox txtExpensees;
+        private Bunifu.Framework.UI.BunifuMetroTextbox txtExpenses;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel9;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtExpairi;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel10;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtGasOut;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel11;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtGiveGoods;
-        private Bunifu.Framework.UI.BunifuMetroTextbox txtEmptyBottle;
+        private Bunifu.Framework.UI.BunifuMetroTextbox txtShortEmpty;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel12;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel13;
-        private Bunifu.Framework.UI.BunifuMetroTextbox txtEmptyCase;
+        private Bunifu.Framework.UI.BunifuMetroTextbox txtExcessEmpty;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel14;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtGaveGoods;
         private Bunifu.Framework.UI.BunifuCustomLabel lblShortExcess;
