@@ -69,7 +69,7 @@
             this.txtUseName.Margin = new System.Windows.Forms.Padding(4);
             this.txtUseName.Name = "txtUseName";
             this.txtUseName.Size = new System.Drawing.Size(340, 29);
-            this.txtUseName.TabIndex = 9;
+            this.txtUseName.TabIndex = 1;
             this.txtUseName.Text = "Admin";
             this.txtUseName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -109,7 +109,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(340, 29);
-            this.txtPassword.TabIndex = 11;
+            this.txtPassword.TabIndex = 0;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -142,7 +142,7 @@
             this.btnSignIn.OnHoverTextColor = System.Drawing.Color.White;
             this.btnSignIn.selected = false;
             this.btnSignIn.Size = new System.Drawing.Size(284, 44);
-            this.btnSignIn.TabIndex = 35;
+            this.btnSignIn.TabIndex = 3;
             this.btnSignIn.Text = "Sign In";
             this.btnSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSignIn.Textcolor = System.Drawing.Color.White;
@@ -203,7 +203,7 @@
             this.llblFroget.Location = new System.Drawing.Point(272, 166);
             this.llblFroget.Name = "llblFroget";
             this.llblFroget.Size = new System.Drawing.Size(91, 13);
-            this.llblFroget.TabIndex = 36;
+            this.llblFroget.TabIndex = 2;
             this.llblFroget.TabStop = true;
             this.llblFroget.Text = "Froget password?";
             this.llblFroget.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblFroget_LinkClicked);

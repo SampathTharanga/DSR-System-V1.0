@@ -87,7 +87,7 @@ namespace DSR_System
         public SqlDataReader FrogetPassword(string _userName, string _secQue, string _ans)
         {
             con.Close();
-            SqlCommand cmd = new SqlCommand("SELECT UserName FROM User_Table WHERE UserName='" + _userName + "' AND SecQuestion='" + _secQue + "' AND Answer='" + _ans + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT Password FROM User_Table WHERE UserName='" + _userName + "' AND SecQuestion='" + _secQue + "' AND Answer='" + _ans + "'", con);
             con.Open();
             SqlDataReader dr =  cmd.ExecuteReader();
             return dr;

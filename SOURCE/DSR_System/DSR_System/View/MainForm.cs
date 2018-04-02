@@ -18,34 +18,55 @@ namespace DSR_System
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucLoad.LoadFunc))
+            try
             {
-                pnlMain.Controls.Add(ucLoad.LoadFunc);
-                ucLoad.LoadFunc.Dock = DockStyle.Fill;
-                ucLoad.LoadFunc.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucLoad.LoadFunc))
+                {
+                    pnlMain.Controls.Add(ucLoad.LoadFunc);
+                    ucLoad.LoadFunc.Dock = DockStyle.Fill;
+                    ucLoad.LoadFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSlideUnload_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucUnload.Unload))
+            try
             {
-                pnlMain.Controls.Add(ucUnload.Unload);
-                ucUnload.Unload.Dock = DockStyle.Fill;
-                ucUnload.Unload.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucUnload.Unload))
+                {
+                    pnlMain.Controls.Add(ucUnload.Unload);
+                    ucUnload.Unload.Dock = DockStyle.Fill;
+                    ucUnload.Unload.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSlideLoad_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucLoad.LoadFunc))
+            try
             {
-                pnlMain.Controls.Add(ucLoad.LoadFunc);
-                ucLoad.LoadFunc.Dock = DockStyle.Fill;
-                ucLoad.LoadFunc.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucLoad.LoadFunc))
+                {
+                    pnlMain.Controls.Add(ucLoad.LoadFunc);
+                    ucLoad.LoadFunc.Dock = DockStyle.Fill;
+                    ucLoad.LoadFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -66,45 +87,73 @@ namespace DSR_System
 
         private void btnSlideUser_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucRegistration.RegFunc))
+            try
             {
-                pnlMain.Controls.Add(ucRegistration.RegFunc);
-                ucRegistration.RegFunc.Dock = DockStyle.Fill;
-                ucRegistration.RegFunc.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucRegistration.RegFunc))
+                {
+                    pnlMain.Controls.Add(ucRegistration.RegFunc);
+                    ucRegistration.RegFunc.Dock = DockStyle.Fill;
+                    ucRegistration.RegFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucReport.ReportFunc))
+            try
             {
-                pnlMain.Controls.Add(ucReport.ReportFunc);
-                ucReport.ReportFunc.Dock = DockStyle.Fill;
-                ucReport.ReportFunc.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucReport.ReportFunc))
+                {
+                    pnlMain.Controls.Add(ucReport.ReportFunc);
+                    ucReport.ReportFunc.Dock = DockStyle.Fill;
+                    ucReport.ReportFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSlideAbout_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucAbout.AboutFunc))
+            try
             {
-                pnlMain.Controls.Add(ucAbout.AboutFunc);
-                ucAbout.AboutFunc.Dock = DockStyle.Fill;
-                ucRegistration.RegFunc.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucAbout.AboutFunc))
+                {
+                    pnlMain.Controls.Add(ucAbout.AboutFunc);
+                    ucAbout.AboutFunc.Dock = DockStyle.Fill;
+                    ucRegistration.RegFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSlideItem_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            if (!pnlMain.Controls.Contains(ucItems.ItemFunc))
+            try
             {
-                pnlMain.Controls.Add(ucItems.ItemFunc);
-                ucItems.ItemFunc.Dock = DockStyle.Fill;
-                ucItems.ItemFunc.BringToFront();
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucItems.ItemFunc))
+                {
+                    pnlMain.Controls.Add(ucItems.ItemFunc);
+                    ucItems.ItemFunc.Dock = DockStyle.Fill;
+                    ucItems.ItemFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

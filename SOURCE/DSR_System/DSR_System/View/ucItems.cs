@@ -44,15 +44,22 @@ namespace DSR_System
         //BUNIFU FRAMEWORK TEXTBOX MAXLENGTH SET
         private void SetMaximumLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maximumLength)
         {
-            foreach (Control ctl in metroTextbox.Controls)
+            try
             {
-                if (ctl.GetType() == typeof(TextBox))
+                foreach (Control ctl in metroTextbox.Controls)
                 {
-                    var txt = (TextBox)ctl;
-                    txt.MaxLength = maximumLength;
+                    if (ctl.GetType() == typeof(TextBox))
+                    {
+                        var txt = (TextBox)ctl;
+                        txt.MaxLength = maximumLength;
 
-                    // Set other properties & events here...
+                        // Set other properties & events here...
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -93,7 +100,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -117,7 +124,7 @@ namespace DSR_System
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -150,7 +157,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -166,7 +173,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -181,7 +188,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DSR_System
@@ -32,12 +26,11 @@ namespace DSR_System
                     SqlDataReader dr = ObjUser.FrogetPassword("Admin", cbxSecQue.selectedIndex.ToString(), txtAnswer.Text);
                     if (dr.Read() == true)
                     {
-                        MessageBox.Show(dr["Password"].ToString());
+                        MessageBox.Show("Admin login password is " + dr["Password"].ToString() + ".", "Password Recover", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Application.Restart();
                     }
                     else
-                    {
                         MessageBox.Show("Incorrect details!", "Recover Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
                 else
                     MessageBox.Show("Please enter details!", "Recover Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

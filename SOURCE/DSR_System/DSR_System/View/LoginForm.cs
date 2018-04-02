@@ -24,33 +24,47 @@ namespace DSR_System
         UserClass ObjUserCl = new UserClass();
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            if (ObjUserCl.CheckExistUser() != true)
+            try
             {
-                //DEFAULT USER ACCOUNT CREATE
-                ObjUserCl.UserRegistration();
-                MessageBox.Show("Default user registration completed!", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (ObjUserCl.CheckExistUser() != true)
+                {
+                    //DEFAULT USER ACCOUNT CREATE
+                    ObjUserCl.UserRegistration();
+                    MessageBox.Show("Default user registration completed!", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         void LoginFunction()
         {
-            if (!string.IsNullOrEmpty(txtUseName.Text) && !string.IsNullOrEmpty(txtPassword.Text))
+            try
             {
-                SqlDataReader drm = ObjUserCl.LoginUser(txtUseName.Text, txtPassword.Text);
-                if (drm.Read())
+                if (!string.IsNullOrEmpty(txtUseName.Text) && !string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    con.Close();
-                    this.Hide();
-                    MainForm ObjMn = new MainForm();
-                    ObjMn.ShowDialog();
+                    SqlDataReader drm = ObjUserCl.LoginUser(txtUseName.Text, txtPassword.Text);
+                    if (drm.Read())
+                    {
+                        con.Close();
+                        this.Hide();
+                        MainForm ObjMn = new MainForm();
+                        ObjMn.ShowDialog();
+                    }
+                    else
+                    {
+                        con.Close();
+                        MessageBox.Show("Please enter correct details", "USER ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtPassword.Text = string.Empty;
+                        txtUseName.Text = string.Empty;
+                    }
                 }
-                else
-                {
-                    con.Close();
-                    MessageBox.Show("Please enter correct details", "USER ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtPassword.Text = string.Empty;
-                    txtUseName.Text = string.Empty;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -70,7 +84,7 @@ namespace DSR_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
