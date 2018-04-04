@@ -20,8 +20,8 @@ namespace DSR_System
         {
             InitializeComponent();
 
-            SetMaximumLength(txtUseName, 5);
-            SetMaximumLength(txtPassword, 10);
+            SetMaxLength(txtUseName, 5);
+            SetMaxLength(txtPassword, 10);
         }
 
         UserClass ObjUserCl = new UserClass();
@@ -53,8 +53,8 @@ namespace DSR_System
                     {
                         con.Close();
                         this.Hide();
-                        MainForm ObjMn = new MainForm();
-                        ObjMn.ShowDialog();
+                        new MainForm().ShowDialog();
+                        //this.Close();
                     }
                     else
                     {
@@ -82,7 +82,7 @@ namespace DSR_System
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     LoginFunction();
                 }
@@ -99,8 +99,8 @@ namespace DSR_System
             frmForget.ShowDialog();
         }
 
-        //BUNIFU FRAMEWORK TEXTBOX MAXLENGTH SET
-        private void SetMaximumLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maximumLength)
+        //SET TEXTBOX MAXLENGHT
+        private void SetMaxLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maxLength)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace DSR_System
                     if (ctl.GetType() == typeof(TextBox))
                     {
                         var txt = (TextBox)ctl;
-                        txt.MaxLength = maximumLength;
+                        txt.MaxLength = maxLength;
                     }
                 }
             }

@@ -52,82 +52,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\UserClass.cs" />
-    <Compile Include="Control\ItemClass.cs" />
-    <Compile Include="Control\LoadUnloadClass.cs" />
-    <Compile Include="Control\DeliveryClass.cs" />
-    <Compile Include="View\ucItems.cs">
+    <Compile Include="User\UserClass.cs" />
+    <Compile Include="Item\ItemClass.cs" />
+    <Compile Include="Load and Unload\LoadUnloadClass.cs" />
+    <Compile Include="Load and Unload\DeliveryClass.cs" />
+    <Compile Include="Item\ucItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucItems.Designer.cs">
+    <Compile Include="Item\ucItems.Designer.cs">
       <DependentUpon>ucItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\FrogetPasswordForm.cs">
+    <Compile Include="User\FrogetPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FrogetPasswordForm.Designer.cs">
+    <Compile Include="User\FrogetPasswordForm.Designer.cs">
       <DependentUpon>FrogetPasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\MainForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\MainForm.Designer.cs">
+    <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\LoginForm.cs">
+    <Compile Include="User\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\LoginForm.Designer.cs">
+    <Compile Include="User\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ucAbout.cs">
+    <Compile Include="About\ucAbout.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucAbout.Designer.cs">
+    <Compile Include="About\ucAbout.Designer.cs">
       <DependentUpon>ucAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ucChart.cs">
+    <Compile Include="Chart\ucChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucChart.Designer.cs">
+    <Compile Include="Chart\ucChart.Designer.cs">
       <DependentUpon>ucChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ucLoad.cs">
+    <Compile Include="Load and Unload\ucLoad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucLoad.Designer.cs">
+    <Compile Include="Load and Unload\ucLoad.Designer.cs">
       <DependentUpon>ucLoad.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ucRegistration.cs">
+    <Compile Include="User\ucRegistration.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucRegistration.Designer.cs">
+    <Compile Include="User\ucRegistration.Designer.cs">
       <DependentUpon>ucRegistration.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ucReport.cs">
+    <Compile Include="Report\ucReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucReport.Designer.cs">
+    <Compile Include="Report\ucReport.Designer.cs">
       <DependentUpon>ucReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ucUnload.cs">
+    <Compile Include="Load and Unload\ucUnload.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\ucUnload.Designer.cs">
+    <Compile Include="Load and Unload\ucUnload.Designer.cs">
       <DependentUpon>ucUnload.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\ucItems.resx">
+    <EmbeddedResource Include="Item\ucItems.resx">
       <DependentUpon>ucItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\FrogetPasswordForm.resx">
+    <EmbeddedResource Include="User\FrogetPasswordForm.resx">
       <DependentUpon>FrogetPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\LoginForm.resx">
+    <EmbeddedResource Include="User\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\MainForm.resx">
+    <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -140,22 +140,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\ucAbout.resx">
+    <EmbeddedResource Include="About\ucAbout.resx">
       <DependentUpon>ucAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ucChart.resx">
+    <EmbeddedResource Include="Chart\ucChart.resx">
       <DependentUpon>ucChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ucLoad.resx">
+    <EmbeddedResource Include="Load and Unload\ucLoad.resx">
       <DependentUpon>ucLoad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ucRegistration.resx">
+    <EmbeddedResource Include="User\ucRegistration.resx">
       <DependentUpon>ucRegistration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ucReport.resx">
+    <EmbeddedResource Include="Report\ucReport.resx">
       <DependentUpon>ucReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ucUnload.resx">
+    <EmbeddedResource Include="Load and Unload\ucUnload.resx">
       <DependentUpon>ucUnload.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />

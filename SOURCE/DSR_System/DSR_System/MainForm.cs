@@ -78,6 +78,20 @@ namespace DSR_System
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Application.Restart();
+
+            //this.Hide();
+            //new LoginForm().ShowDialog();
+            //this.Close();
+
+            //Close();
+            //new LoginForm().ShowDialog();
+
+            //this.Close();
+            //ShowInTaskbar = false;
+            //Visible = false;
+            //Opacity = 0;
+            //new LoginForm().ShowDialog();
+
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
