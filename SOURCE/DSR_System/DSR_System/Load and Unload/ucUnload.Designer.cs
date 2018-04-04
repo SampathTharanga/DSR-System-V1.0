@@ -246,6 +246,7 @@
             this.txtCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCash.Click += new System.EventHandler(this.txtCash_Click);
             this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCash_KeyPress);
+            this.txtCash.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCash_MouseClick);
             // 
             // bunifuCustomLabel4
             // 

@@ -49,22 +49,36 @@ namespace DSR_System
                 dataGridViewUnload.Columns["LoadBottle"].ReadOnly = true;
                 dataGridViewUnload.Columns["SaleBottle"].ReadOnly = true;
                 dataGridViewUnload.Columns["Value"].ReadOnly = true;
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT ItemName, LoadCases, LoadBottle, UnloadCases, UnloadBottle, SaleBottle, Value FROM LoadUnload_Table WHERE Route = '" + txtRoute.Text + "' AND Date = '" + dtpDate.Value + "' AND DSRname = '" + cbxDSRname.selectedValue + "'", con);
+
+                SqlCommand cmdCheck = new SqlCommand("SELECT ItemName, LoadCases, LoadBottle, UnloadCases, UnloadBottle, SaleBottle, Value FROM LoadUnload_Table WHERE Route = '" + txtRoute.Text + "' AND Date = '" + dtpDate.Value + "' AND DSRname = '" + cbxDSRname.selectedValue + "'", con);
                 con.Open();
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                con.Close();
-                dataGridViewUnload.Rows.Clear();
-                foreach (DataRow item in dt.Rows)
+                SqlDataReader drCheck = cmdCheck.ExecuteReader();
+                if (drCheck.Read() == true)
                 {
-                    int n = dataGridViewUnload.Rows.Add();
-                    dataGridViewUnload.Rows[n].Cells[0].Value = item["ItemName"].ToString();
-                    dataGridViewUnload.Rows[n].Cells[1].Value = item["LoadCases"].ToString();
-                    dataGridViewUnload.Rows[n].Cells[2].Value = item["LoadBottle"].ToString();
-                    dataGridViewUnload.Rows[n].Cells[3].Value = item["UnloadCases"].ToString();
-                    dataGridViewUnload.Rows[n].Cells[4].Value = item["UnloadBottle"].ToString();
-                    dataGridViewUnload.Rows[n].Cells[5].Value = item["SaleBottle"].ToString();
-                    dataGridViewUnload.Rows[n].Cells[6].Value = item["Value"].ToString();
+                    con.Close();
+                    SqlDataAdapter sda = new SqlDataAdapter("SELECT ItemName, LoadCases, LoadBottle, UnloadCases, UnloadBottle, SaleBottle, Value FROM LoadUnload_Table WHERE Route = '" + txtRoute.Text + "' AND Date = '" + dtpDate.Value + "' AND DSRname = '" + cbxDSRname.selectedValue + "'", con);
+                    con.Open();
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    con.Close();
+                    dataGridViewUnload.Rows.Clear();
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        int n = dataGridViewUnload.Rows.Add();
+                        dataGridViewUnload.Rows[n].Cells[0].Value = item["ItemName"].ToString();
+                        dataGridViewUnload.Rows[n].Cells[1].Value = item["LoadCases"].ToString();
+                        dataGridViewUnload.Rows[n].Cells[2].Value = item["LoadBottle"].ToString();
+                        dataGridViewUnload.Rows[n].Cells[3].Value = item["UnloadCases"].ToString();
+                        dataGridViewUnload.Rows[n].Cells[4].Value = item["UnloadBottle"].ToString();
+                        dataGridViewUnload.Rows[n].Cells[5].Value = item["SaleBottle"].ToString();
+                        dataGridViewUnload.Rows[n].Cells[6].Value = item["Value"].ToString();
+                    }
+                }
+                else
+                {
+                    con.Close();
+                    MessageBox.Show("Record does not found!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    AfterSaveClearAll(this);
                 }
             }
             catch (Exception ex)
@@ -78,6 +92,8 @@ namespace DSR_System
         {
             try
             {
+                dtpDate.Value = DateTime.Today;
+
                 //DATABASE DATA LOAD TO THE DROPDOWN
                 SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM DSR_Table", con);
                 con.Open();
@@ -275,7 +291,7 @@ namespace DSR_System
 
         private void txtCash_Click(object sender, EventArgs e)
         {
-            SalesAndValues();
+            
         }
 
         private void dataGridViewUnload_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -309,6 +325,11 @@ namespace DSR_System
         {
             if(!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
                 e.Handled = true;
+        }
+
+        private void txtCash_MouseClick(object sender, MouseEventArgs e)
+        {
+            
         }
 
         private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)

@@ -55,7 +55,7 @@ namespace DSR_System
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } 
 
         private void ucLoad_Load(object sender, EventArgs e)
         {
