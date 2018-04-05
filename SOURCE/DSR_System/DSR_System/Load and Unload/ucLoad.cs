@@ -196,5 +196,28 @@ namespace DSR_System
             //if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127)
             //    e.Handled = true;
         }
+
+        private void dataGridViewLoad_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            // ALLOW DATAGRIDVIEW CELL ENTER VALUE DIGIT ONLY = PART 1
+            e.Control.KeyPress -= new KeyPressEventHandler(DataGridViewCell_KeyPress);
+            if (dataGridViewLoad.CurrentCell.ColumnIndex == 1 || dataGridViewLoad.CurrentCell.ColumnIndex == 2)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(DataGridViewCell_KeyPress);
+                }
+            }
+        }
+
+        // ALLOW DATAGRIDVIEW CELL ENTER VALUE DIGIT ONLY = PART 2
+        private void DataGridViewCell_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

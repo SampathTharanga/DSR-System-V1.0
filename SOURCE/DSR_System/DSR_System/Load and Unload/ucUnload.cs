@@ -37,6 +37,44 @@ namespace DSR_System
         public ucUnload()
         {
             InitializeComponent();
+
+            MaxLengthMethod();
+        }
+
+        void MaxLengthMethod()
+        {
+            SetMaxLength(txtRoute, 30);
+            SetMaxLength(txtCash, 18);
+            SetMaxLength(txtCheque, 18);
+            SetMaxLength(txtCredit, 18);
+            SetMaxLength(txtExpenses, 18);
+            SetMaxLength(txtExpairi, 18);
+            SetMaxLength(txtGasOut, 18);
+            SetMaxLength(txtGiveGoods, 18);
+            SetMaxLength(txtGaveGoods, 18);
+            SetMaxLength(txtShortEmpty, 18);
+            SetMaxLength(txtExcessEmpty, 18);
+        }
+
+
+        //SET TEXTBOX MAXLENGHT
+        private void SetMaxLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maxLength)
+        {
+            try
+            {
+                foreach (Control ctl in metroTextbox.Controls)
+                {
+                    if (ctl.GetType() == typeof(TextBox))
+                    {
+                        var txt = (TextBox)ctl;
+                        txt.MaxLength = maxLength;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region SELECTED DSR DATA LOAD
@@ -251,10 +289,16 @@ namespace DSR_System
         {
             try
             {
-                ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
-                MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!string.IsNullOrEmpty(txtRoute.Text) && cbxDSRname.selectedIndex != -1)
+                {
+                    ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
+                    MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                AfterSaveClearAll(this);
+                    AfterSaveClearAll(this);
+                }
+                else
+                    MessageBox.Show("Please enter details!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             catch (Exception ex)
             {
@@ -330,6 +374,29 @@ namespace DSR_System
         private void txtCash_MouseClick(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void dataGridViewUnload_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            // ALLOW DATAGRIDVIEW CELL ENTER VALUE DIGIT ONLY = PART 1
+            e.Control.KeyPress -= new KeyPressEventHandler(DataGridViewCell_KeyPress);
+            if (dataGridViewUnload.CurrentCell.ColumnIndex == 3 || dataGridViewUnload.CurrentCell.ColumnIndex == 4)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(DataGridViewCell_KeyPress);
+                }
+            }
+        }
+
+        // ALLOW DATAGRIDVIEW CELL ENTER VALUE DIGIT ONLY = PART 2
+        private void DataGridViewCell_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
