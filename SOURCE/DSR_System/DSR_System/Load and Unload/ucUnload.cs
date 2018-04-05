@@ -291,10 +291,22 @@ namespace DSR_System
             {
                 if (!string.IsNullOrEmpty(txtRoute.Text) && cbxDSRname.selectedIndex != -1)
                 {
-                    ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
-                    MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SqlCommand cmdx = new SqlCommand("SELECT * FROM LoadUnload_Table WHERE Route = '" + txtRoute.Text + "' AND Date = '" + dtpDate.Value + "' AND DSRname = '" + cbxDSRname.selectedValue + "'", con);
+                    con.Open();
+                    SqlDataReader drx = cmdx.ExecuteReader();
+                    if (!drx.Read() == true)
+                    {
+                        con.Close();
+                        ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
+                        MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    AfterSaveClearAll(this);
+                        AfterSaveClearAll(this);
+                    }
+                    else
+                    {
+                        con.Close();
+                        MessageBox.Show("Record exist!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                     MessageBox.Show("Please enter details!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);

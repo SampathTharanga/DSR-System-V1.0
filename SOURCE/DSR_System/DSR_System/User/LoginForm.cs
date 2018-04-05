@@ -54,7 +54,7 @@ namespace DSR_System
                         con.Close();
                         this.Hide();
                         MainForm frmMain = new MainForm();
-                        frmMain.ShowDialog();
+                        frmMain.Show();
                         //this.Close();
                     }
                     else
