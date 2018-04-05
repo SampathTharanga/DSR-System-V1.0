@@ -23,5 +23,13 @@ namespace DSR_System
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public void UpdateLoadUnload(string _Route, DateTime _Date, string _DSRname, string _ItemName, int _UnloadCases, int _UnloadBottle, int _SaleBottle, decimal _Value)
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE LoadUnload_Table SET UnloadCases = '" + _UnloadCases + "', UnloadBottle = '" + _UnloadBottle + "', SaleBottle = '" + _SaleBottle + "', Value = '" + _Value + "' WHERE Route = '" + _Route + "' AND Date = '" + _Date + "' AND DSRname = '" + _DSRname + "' AND ItemName = '" + _ItemName + "'", con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }

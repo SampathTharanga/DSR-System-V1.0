@@ -156,5 +156,23 @@ namespace DSR_System
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlMain.Controls.Clear();
+                if (!pnlMain.Controls.Contains(ucChart.ChartFunc))
+                {
+                    pnlMain.Controls.Add(ucChart.ChartFunc);
+                    ucChart.ChartFunc.Dock = DockStyle.Fill;
+                    ucChart.ChartFunc.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

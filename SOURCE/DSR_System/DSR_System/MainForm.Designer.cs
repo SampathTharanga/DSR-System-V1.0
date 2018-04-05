@@ -339,6 +339,7 @@
             this.btnChart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnChart.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(119)))), ((int)(((byte)(128)))));
             this.btnChart.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
             // 
             // bunifuCustomLabel3
             // 

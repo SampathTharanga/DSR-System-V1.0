@@ -78,6 +78,7 @@
             this.cbxDSRname = new Bunifu.Framework.UI.BunifuDropdown();
             this.bunifuCustomLabel15 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel16 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuCustomLabel17 = new Bunifu.Framework.UI.BunifuCustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUnload)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -565,7 +566,7 @@
             this.lblShortExcess.AutoSize = true;
             this.lblShortExcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShortExcess.ForeColor = System.Drawing.Color.White;
-            this.lblShortExcess.Location = new System.Drawing.Point(533, 487);
+            this.lblShortExcess.Location = new System.Drawing.Point(533, 481);
             this.lblShortExcess.Name = "lblShortExcess";
             this.lblShortExcess.Size = new System.Drawing.Size(0, 39);
             this.lblShortExcess.TabIndex = 33;
@@ -783,11 +784,23 @@
             this.bunifuCustomLabel16.TabIndex = 43;
             this.bunifuCustomLabel16.Text = "Total Value:";
             // 
+            // bunifuCustomLabel17
+            // 
+            this.bunifuCustomLabel17.AutoSize = true;
+            this.bunifuCustomLabel17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel17.ForeColor = System.Drawing.Color.Yellow;
+            this.bunifuCustomLabel17.Location = new System.Drawing.Point(510, 531);
+            this.bunifuCustomLabel17.Name = "bunifuCustomLabel17";
+            this.bunifuCustomLabel17.Size = new System.Drawing.Size(166, 13);
+            this.bunifuCustomLabel17.TabIndex = 44;
+            this.bunifuCustomLabel17.Text = "Please double check your record.";
+            // 
             // ucUnload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.Controls.Add(this.bunifuCustomLabel17);
             this.Controls.Add(this.bunifuCustomLabel16);
             this.Controls.Add(this.bunifuCustomLabel15);
             this.Controls.Add(this.cbxDSRname);
@@ -865,5 +878,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UnloadBottle;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleBottle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel17;
     }
 }

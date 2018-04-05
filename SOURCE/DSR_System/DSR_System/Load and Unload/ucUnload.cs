@@ -38,6 +38,7 @@ namespace DSR_System
         {
             InitializeComponent();
 
+            btnSave.Enabled = false;
             MaxLengthMethod();
         }
 
@@ -56,6 +57,7 @@ namespace DSR_System
             SetMaxLength(txtExcessEmpty, 18);
         }
 
+        LoadUnloadClass ObjLU = new LoadUnloadClass();
 
         //SET TEXTBOX MAXLENGHT
         private void SetMaxLength(Bunifu.Framework.UI.BunifuMetroTextbox metroTextbox, int maxLength)
@@ -263,14 +265,14 @@ namespace DSR_System
                         //SHORT 
                         lblShortExcess.Text = "Short";
                         lblShortExcess.ForeColor = Color.Red;
-                        //ShortBlink();
+                        btnSave.Enabled = true;
                     }
                     else if (totValue < non_neg_processVal3)
                     {
                         //EXCESS
                         lblShortExcess.Text = "Excess";
                         lblShortExcess.ForeColor = Color.ForestGreen;
-                        //ExcessBlink();
+                        btnSave.Enabled = true;
                     }
                     else MessageBox.Show("Process Error!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -291,16 +293,35 @@ namespace DSR_System
             {
                 if (!string.IsNullOrEmpty(txtRoute.Text) && cbxDSRname.selectedIndex != -1)
                 {
-                    SqlCommand cmdx = new SqlCommand("SELECT * FROM LoadUnload_Table WHERE Route = '" + txtRoute.Text + "' AND Date = '" + dtpDate.Value + "' AND DSRname = '" + cbxDSRname.selectedValue + "'", con);
+                    SqlCommand cmdx = new SqlCommand("SELECT * FROM Delivery_Table WHERE Route = '" + txtRoute.Text + "' AND Date = '" + dtpDate.Value + "' AND DSRname = '" + cbxDSRname.selectedValue + "'", con);
                     con.Open();
                     SqlDataReader drx = cmdx.ExecuteReader();
                     if (!drx.Read() == true)
                     {
                         con.Close();
                         ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
+
+                        for (int row = 0; row < dataGridViewUnload.Rows.Count; ++row)
+                        {
+                            ObjLU.UpdateLoadUnload
+                                (
+                                    txtRoute.Text,
+                                    dtpDate.Value,
+                                    cbxDSRname.selectedValue,
+                                    dataGridViewUnload.Rows[row].Cells["ItemName"].Value.ToString(),
+                                    int.Parse(dataGridViewUnload.Rows[row].Cells["UnloadCases"].Value.ToString()),
+                                    int.Parse(dataGridViewUnload.Rows[row].Cells["UnloadBottle"].Value.ToString()),
+                                    int.Parse(dataGridViewUnload.Rows[row].Cells["SaleBottle"].Value.ToString()),
+                                    decimal.Parse(dataGridViewUnload.Rows[row].Cells["Value"].Value.ToString())
+
+                                );
+                        }
+
                         MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         AfterSaveClearAll(this);
+
+                        btnSave.Enabled = false;
                     }
                     else
                     {
@@ -458,7 +479,7 @@ namespace DSR_System
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127 && e.KeyChar != 46)
                 e.Handled = true;
         }
-
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveProcess();
