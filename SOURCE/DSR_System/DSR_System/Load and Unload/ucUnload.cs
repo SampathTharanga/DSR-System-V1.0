@@ -232,7 +232,7 @@ namespace DSR_System
         {
             try
             {
-                decimal processVal1 = 0.00m, processVal2 = 0.00m, processVal3 = 0.00m;
+                decimal processVal = 0.00m;
 
                 if (
                     decimal.TryParse(txtCash.Text, out cash) &&
@@ -248,26 +248,18 @@ namespace DSR_System
                     decimal.TryParse(txtExcessEmpty.Text, out excessEmpty)
                     )
                 {
-                    //SHORT AND EXCESS EMPTY
-                    processVal1 = (totValue + shortEmpty) - excessEmpty;
-
-                    processVal2 = processVal1 - (cash + cheque + credit + discount + expenses + expiri + gasOut);
-
-                    //TO GAVE NAD GIVE
-                    processVal3 = (processVal2 + gaveGoods) - giveGoods;
-
-                    //NEGATIVE TO POSSITIVE
-                    decimal non_neg_processVal3 = Math.Abs(processVal3);
+                    //PROCESS VAL
+                    processVal = (cash + cheque + credit + discount + expenses + expiri + gasOut) + (shortEmpty + gaveGoods) - (excessEmpty + giveGoods);
 
                     //MAKE THE DECISIONS "SHORT" OR "EXCESS"
-                    if (totValue > non_neg_processVal3)
+                    if (totValue > processVal)
                     {
                         //SHORT 
                         lblShortExcess.Text = "Short";
                         lblShortExcess.ForeColor = Color.Red;
                         btnSave.Enabled = true;
                     }
-                    else if (totValue < non_neg_processVal3)
+                    else if (totValue <= processVal)
                     {
                         //EXCESS
                         lblShortExcess.Text = "Excess";
@@ -318,6 +310,7 @@ namespace DSR_System
                         }
 
                         MessageBox.Show("Successful", "Successful Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblTotBottle.Text = lblTotValue.Text = string.Empty;
 
                         AfterSaveClearAll(this);
 

@@ -125,7 +125,8 @@ namespace DSR_System
                     {
                         string route = string.Empty, dsrName = string.Empty, itemName = string.Empty;
                         int loadCase = 0, loadBottle = 0;
-                        DateTime date = DateTime.Today;
+                        //DateTime date = DateTime.Today;
+                        DateTime date = dtpDate.Value;
 
                         route = txtRoute.Text;
                         dsrName = cbxDSRname.selectedValue;
