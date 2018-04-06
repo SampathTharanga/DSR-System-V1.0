@@ -39,50 +39,47 @@ namespace DSR_System
             var ShortValue = new ChartValues<int>();
             var ExcessValue = new ChartValues<int>();
             int ShortVal = 0, ExcessVal = 0;
+            int MonthVal = 0, YearVal = 0;
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT Date,FinalResult FROM Delivery_Table", con);
+            con.Open();
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
 
             for (int month = 1; month <= 12; month++)
             {
                 ShortVal = 0; ExcessVal = 0;
-                while (true)
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Delivery_Table  WHERE MONTH(Date) = '" + month + "' AND YEAR(Date) = YEAR('"+ DateTime.Today + "')", con);
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read() == true)
-                    {
-                        if (dr["FinalResult"].ToString() == "Short")
-                        {
-                            con.Close();
+                    MonthVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Month;
+                    YearVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Year;
+
+                    if (MonthVal == month && YearVal == DateTime.Today.Year)
+
+                        if (dt.Rows[i]["FinalResult"].ToString() == "Short")
                             ShortVal++;
-                        }
                         else
-                        {
-                            con.Close();
                             ExcessVal++;
-                        }
-                    }
-                    else
-                    {
-                        con.Close();
-                        break;
-                    }
                 }
+
                 ShortValue.Add(ShortVal);
                 ExcessValue.Add(ExcessVal);
             }
+            
 
             cartesianChart1.Series = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Title = "Short",
-                    Values = ShortValue
+                    Title = "Excess",
+                    Values = ExcessValue
                 }
                 ,
                 new LineSeries
                 {
-                    Title = "Excess",
-                    Values = ExcessValue
+                    Title = "Short",
+                    Values = ShortValue
                 }
             };
 
@@ -95,24 +92,10 @@ namespace DSR_System
             cartesianChart1.AxisY.Add(new Axis
             {
                 Title = "Count",
-                LabelFormatter = value => value.ToString("C")
+                LabelFormatter = value => value + ""
             });
 
             cartesianChart1.LegendLocation = LegendLocation.Right;
-
-            //modifying the series collection will animate and update the chart
-            //cartesianChart1.Series.Add(new LineSeries
-            //{
-            //    Values =ShortValue,
-            //    LineSmoothness = 0, //straight lines, 1 really smooth lines
-            //    PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-            //    PointGeometrySize = 50,
-            //    PointForeground = System.Windows.Media.Brushes.Gray
-            //});
-
-            //modifying any series values will also animate and update the chart
-            cartesianChart1.Series[1].Values.Add(5d);
-
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
         }
