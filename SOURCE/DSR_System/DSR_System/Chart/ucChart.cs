@@ -35,11 +35,10 @@ namespace DSR_System
         {
             InitializeComponent();
 
-            //CHART FUNCTION HERE
+            //CHART FUNCTION PROCESS
             var ShortValue = new ChartValues<int>();
             var ExcessValue = new ChartValues<int>();
-            int ShortVal = 0, ExcessVal = 0;
-            int MonthVal = 0, YearVal = 0;
+            int ShortVal = 0, ExcessVal = 0, MonthVal = 0, YearVal = 0;
 
             SqlDataAdapter da = new SqlDataAdapter("SELECT Date,FinalResult FROM Delivery_Table", con);
             con.Open();
@@ -52,6 +51,7 @@ namespace DSR_System
                 ShortVal = 0; ExcessVal = 0;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                    MonthVal = 0; YearVal = 0;
                     MonthVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Month;
                     YearVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Year;
 
