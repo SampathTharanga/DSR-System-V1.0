@@ -79,6 +79,7 @@
             this.bunifuCustomLabel15 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel16 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel17 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuCustomLabel18 = new Bunifu.Framework.UI.BunifuCustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUnload)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -672,7 +673,7 @@
             this.lblTotValue.AutoSize = true;
             this.lblTotValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblTotValue.Location = new System.Drawing.Point(525, 360);
+            this.lblTotValue.Location = new System.Drawing.Point(546, 360);
             this.lblTotValue.Name = "lblTotValue";
             this.lblTotValue.Size = new System.Drawing.Size(0, 17);
             this.lblTotValue.TabIndex = 38;
@@ -795,11 +796,23 @@
             this.bunifuCustomLabel17.TabIndex = 44;
             this.bunifuCustomLabel17.Text = "Please double check your record.";
             // 
+            // bunifuCustomLabel18
+            // 
+            this.bunifuCustomLabel18.AutoSize = true;
+            this.bunifuCustomLabel18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.bunifuCustomLabel18.Location = new System.Drawing.Point(521, 360);
+            this.bunifuCustomLabel18.Name = "bunifuCustomLabel18";
+            this.bunifuCustomLabel18.Size = new System.Drawing.Size(25, 17);
+            this.bunifuCustomLabel18.TabIndex = 45;
+            this.bunifuCustomLabel18.Text = "Rs";
+            // 
             // ucUnload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.Controls.Add(this.bunifuCustomLabel18);
             this.Controls.Add(this.bunifuCustomLabel17);
             this.Controls.Add(this.bunifuCustomLabel16);
             this.Controls.Add(this.bunifuCustomLabel15);
@@ -879,5 +892,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleBottle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel17;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel18;
     }
 }

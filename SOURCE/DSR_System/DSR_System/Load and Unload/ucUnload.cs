@@ -218,7 +218,7 @@ namespace DSR_System
                     totValue += Convert.ToDecimal(dataGridViewUnload.Rows[row].Cells["Value"].Value.ToString());
                 }
                 lblTotBottle.Text = salesTotBottle.ToString();
-                lblTotValue.Text = "Rs " + totValue.ToString();
+                lblTotValue.Text = totValue.ToString();
             }
             catch (Exception ex)
             {
@@ -291,7 +291,7 @@ namespace DSR_System
                     if (!drx.Read() == true)
                     {
                         con.Close();
-                        ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text);
+                        ObjDelivery.InsertProcess(dtpDate.Value, txtRoute.Text, cbxDSRname.selectedValue, shortEmpty, excessEmpty, cash, cheque, credit, discount, expenses, expiri, gasOut, giveGoods, gaveGoods, lblShortExcess.Text, int.Parse(lblTotBottle.Text),decimal.Parse(lblTotValue.Text));
 
                         for (int row = 0; row < dataGridViewUnload.Rows.Count; ++row)
                         {

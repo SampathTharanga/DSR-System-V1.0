@@ -33,42 +33,45 @@ namespace DSR_System
 
         public ucChart()
         {
-            InitializeComponent();
-
-            //CHART FUNCTION PROCESS
-            var ShortValue = new ChartValues<int>();
-            var ExcessValue = new ChartValues<int>();
-            int ShortVal = 0, ExcessVal = 0, MonthVal = 0, YearVal = 0;
-
-            SqlDataAdapter da = new SqlDataAdapter("SELECT Date,FinalResult FROM Delivery_Table", con);
-            con.Open();
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-
-            for (int month = 1; month <= 12; month++)
+            try
             {
-                ShortVal = 0; ExcessVal = 0;
-                for (int i = 0; i < dt.Rows.Count; i++)
+
+                InitializeComponent();
+
+                //CHART FUNCTION PROCESS
+                var ShortValue = new ChartValues<int>();
+                var ExcessValue = new ChartValues<int>();
+                int ShortVal = 0, ExcessVal = 0, MonthVal = 0, YearVal = 0;
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT Date,FinalResult FROM Delivery_Table", con);
+                con.Open();
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+                for (int month = 1; month <= 12; month++)
                 {
-                    MonthVal = 0; YearVal = 0;
-                    MonthVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Month;
-                    YearVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Year;
+                    ShortVal = 0; ExcessVal = 0;
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        MonthVal = 0; YearVal = 0;
+                        MonthVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Month;
+                        YearVal = DateTime.Parse(dt.Rows[i]["Date"].ToString()).Year;
 
-                    if (MonthVal == month && YearVal == DateTime.Today.Year)
+                        if (MonthVal == month && YearVal == DateTime.Today.Year)
 
-                        if (dt.Rows[i]["FinalResult"].ToString() == "Short")
-                            ShortVal++;
-                        else
-                            ExcessVal++;
+                            if (dt.Rows[i]["FinalResult"].ToString() == "Short")
+                                ShortVal++;
+                            else
+                                ExcessVal++;
+                    }
+
+                    ShortValue.Add(ShortVal);
+                    ExcessValue.Add(ExcessVal);
                 }
 
-                ShortValue.Add(ShortVal);
-                ExcessValue.Add(ExcessVal);
-            }
-            
 
-            cartesianChart1.Series = new SeriesCollection
+                cartesianChart1.Series = new SeriesCollection
             {
                 new LineSeries
                 {
@@ -83,26 +86,31 @@ namespace DSR_System
                 }
             };
 
-            cartesianChart1.AxisX.Add(new Axis
+                cartesianChart1.AxisX.Add(new Axis
+                {
+                    Title = "Month",
+                    Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+                });
+
+                cartesianChart1.AxisY.Add(new Axis
+                {
+                    Title = "Count",
+                    LabelFormatter = value => value + ""
+                });
+
+                cartesianChart1.LegendLocation = LegendLocation.Right;
+
+                cartesianChart1.DataClick += CartesianChart1OnDataClick;
+            }
+            catch (Exception ex)
             {
-                Title = "Month",
-                Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
-            });
-
-            cartesianChart1.AxisY.Add(new Axis
-            {
-                Title = "Count",
-                LabelFormatter = value => value + ""
-            });
-
-            cartesianChart1.LegendLocation = LegendLocation.Right;
-
-            cartesianChart1.DataClick += CartesianChart1OnDataClick;
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
         {
-            MessageBox.Show("You clicked (" + chartPoint.X + "," + chartPoint.Y + ")");
+            MessageBox.Show("You clicked (" + chartPoint.X + "," + chartPoint.Y + ")", "Short and Excess", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     
     }
