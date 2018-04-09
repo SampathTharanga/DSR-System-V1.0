@@ -67,3 +67,5 @@ J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURC
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.csproj.CopyComplete
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.exe
 J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.pdb
+J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.DelRpDtSelectForm.resources
+J:\Enjoy my Lfie\My Kindom\Software Development\DSR System\DSR-System-V1.0\SOURCE\DSR_System\DSR_System\obj\Debug\DSR_System.csprojResolveAssemblyReference.cache

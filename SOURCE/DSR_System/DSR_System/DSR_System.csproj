@@ -73,6 +73,19 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeliveryCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeliveryCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DelRpDtSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelRpDtSelectForm.Designer.cs">
+      <DependentUpon>DelRpDtSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DataContainerDelivery.cs" />
     <Compile Include="User\UserClass.cs" />
     <Compile Include="Item\ItemClass.cs" />
     <Compile Include="Load and Unload\LoadUnloadClass.cs" />
@@ -139,6 +152,13 @@
     <Compile Include="Load and Unload\ucUnload.Designer.cs">
       <DependentUpon>ucUnload.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DeliveryCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DeliveryCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelRpDtSelectForm.resx">
+      <DependentUpon>DelRpDtSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\ucItems.resx">
       <DependentUpon>ucItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +212,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
