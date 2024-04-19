@@ -2,6 +2,19 @@
 
 Welcome to the DSR System V1.0 repository! This repository contains the source code for the DSR (Daily Sales Report) System version 1.0.
 
+![Login](https://github.com/SampathTharanga/DSR-System-V1.0/assets/17849521/0c86b2e4-919e-4b04-a04a-cd3e7959fadf)
+
+![Users](https://github.com/SampathTharanga/DSR-System-V1.0/assets/17849521/e1c65e2c-5741-4477-b5ef-0fa8dc6fa45b)
+
+![Main Window](https://github.com/SampathTharanga/DSR-System-V1.0/assets/17849521/6282b222-77a6-443a-929c-35ffb60db6b4)
+
+![Load](https://github.com/SampathTharanga/DSR-System-V1.0/assets/17849521/2116be78-bc4a-4b9a-a4e3-57de6586f343)
+
+![Unload](https://github.com/SampathTharanga/DSR-System-V1.0/assets/17849521/2eb7ed9e-35c8-4444-b308-19996ec4fc35)
+
+![chart](https://github.com/SampathTharanga/DSR-System-V1.0/assets/17849521/e9fb75b0-d58a-4b61-872d-561593e25021)
+
+
 ## Overview
 
 The DSR System is a tool designed to streamline the process of generating daily sales reports for businesses. Version 1.0 includes basic functionalities such as data entry, report generation, and export options.
